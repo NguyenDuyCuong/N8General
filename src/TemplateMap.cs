@@ -1,14 +1,12 @@
-﻿using EnvDTE;
-using Microsoft.VisualStudio.Shell;
-using N8General.Helpers;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using EnvDTE;
+using Microsoft.VisualStudio.Shell;
+using N8General.Helpers;
 
 namespace N8General
 {

@@ -1,4 +1,9 @@
-﻿using EnvDTE;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using EnvDTE;
 using EnvDTE80;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
@@ -7,13 +12,6 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.TextManager.Interop;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace N8General.Helpers
 {
@@ -211,7 +209,7 @@ namespace N8General.Helpers
 
         public static IComponentModel GetComponentModel()
         {
-            return (IComponentModel)N8GeneralPackage.GetGlobalService(typeof(SComponentModel));
+            return (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
         }
 
         public static object GetSelectedItem()
@@ -221,7 +219,7 @@ namespace N8General.Helpers
             IVsMultiItemSelect multiItemSelect;
             uint itemId;
 
-            var monitorSelection = (IVsMonitorSelection)Microsoft.VisualStudio.Shell.Package.GetGlobalService(typeof(SVsShellMonitorSelection));
+            var monitorSelection = (IVsMonitorSelection)Package.GetGlobalService(typeof(SVsShellMonitorSelection));
 
             try
             {
@@ -249,6 +247,11 @@ namespace N8General.Helpers
 
             return selectedObject;
         }
+    }
+
+    public static class ProjectKinds
+    {
+        public const string vsProjectKindSolutionFolder = "{66A26720-8FB5-11D2-AA7E-00C04F688DDE}";
     }
 
     public static class ProjectTypes
