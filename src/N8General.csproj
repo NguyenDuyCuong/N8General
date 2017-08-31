@@ -216,6 +216,10 @@
     <Compile Include="ConfigueForm\ConfigueViewModel.cs" />
     <Compile Include="CreateFileStrategy\CreateFileBase.cs" />
     <Compile Include="CreateFileStrategy\CreateFileContext.cs" />
+    <Compile Include="CreateFileStrategy\CreateAPIFunction.cs" />
+    <Compile Include="CreateFileStrategy\CreateResultFile.cs" />
+    <Compile Include="CreateFileStrategy\CreateParameterFile.cs" />
+    <Compile Include="CreateFileStrategy\CreateResponseFile.cs" />
     <Compile Include="CreateFileStrategy\CreateRequestFile.cs" />
     <Compile Include="CreateFileStrategy\ICreateFile.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
@@ -235,34 +239,19 @@
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Compile>
     <Compile Include="TemplateMap.cs" />
-    <Content Include="Templates\.bowerrc.txt">
+    <Content Include="Templates\.controller.txt">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\.html.txt">
+    <Content Include="Templates\.result.txt">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\.md.txt">
+    <Content Include="Templates\.parameter.txt">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\gruntfile.js.txt">
+    <Content Include="Templates\.response.txt">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\gulpfile.js.txt">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\package.json.txt">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\.vb.txt">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\.vb-interface.txt">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\.cs-interface.txt">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\.cs.txt">
+    <Content Include="Templates\.request.txt">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Resource Include="Resources\icon.png" />
@@ -277,15 +266,9 @@
       <Generator>VsixManifestGenerator</Generator>
       <LastGenOutput>source.extension.resx</LastGenOutput>
     </None>
-    <Content Include="Templates\bower.json.txt">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Resource Include="source.extension.ico">
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Resource>
-    <Content Include="Templates\.json.txt">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <VSCTCompile Include="N8General.vsct">

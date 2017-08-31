@@ -24,6 +24,9 @@ namespace N8General
     [Guid(PackageGuids.guidN8GeneralPkgString)]
     public sealed class N8GeneralPackage : ExtensionPointPackage
     {
+        private static N8GeneralPackage _instance;
+        public static N8GeneralPackage Instance => _instance;
+
         public static DTE2 _dte;
 
         protected override void Initialize()
@@ -39,6 +42,8 @@ namespace N8General
                 var menuItem = new OleMenuCommand(MenuItemCallback, menuCommandID);
                 mcs.AddCommand(menuItem);
             }
+
+            _instance = this;
         }
 
         private void MenuItemCallback(object sender, EventArgs e)
@@ -54,6 +59,18 @@ namespace N8General
                 return;
 
             CreateFileContext context = new CreateFileContext(new CreateRequestFile());
+            context.ExecuteCreateFile(config);
+
+            context = new CreateFileContext(new CreateResponseFile());
+            context.ExecuteCreateFile(config);
+
+            context = new CreateFileContext(new CreateParameterFile());
+            context.ExecuteCreateFile(config);
+
+            context = new CreateFileContext(new CreateResultFile());
+            context.ExecuteCreateFile(config);
+
+            context = new CreateFileContext(new CreateAPIFunction());
             context.ExecuteCreateFile(config);
         }
         

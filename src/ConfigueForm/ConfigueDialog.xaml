@@ -45,21 +45,21 @@
         <DockPanel LastChildFill="True">
             <TextBlock Text="API Controller:" Style="{StaticResource LabelStyle}"/>
             <Button DockPanel.Dock="Right" Click="ButtonFolderDialog_OnClick">...</Button>
-            <TextBox Text="{Binding Model.APIControllerName}" Style="{StaticResource ValueStyle}"/>
+            <TextBox Text="{Binding Model.APIControllerName}" Style="{StaticResource ValueStyle}" TabIndex="0"/>
         </DockPanel>
         <DockPanel LastChildFill="True">
             <TextBlock Text="Method Name:" Style="{StaticResource LabelStyle}"/>
             <Button DockPanel.Dock="Right">...</Button>
-            <TextBox Text="{Binding Model.MethodFolder}" Style="{StaticResource ValueStyleWidth}"/>
+            <TextBox Text="{Binding Model.MethodFolder}" Style="{StaticResource ValueStyleWidth}" TabIndex="1"/>
             <TextBlock Text="/" Style="{StaticResource LabelStyle}" Width="5"/>
-            <TextBox Text="{Binding Model.MethodName}" Style="{StaticResource ValueStyle}"/>
+            <TextBox Text="{Binding Model.MethodName}" Style="{StaticResource ValueStyle}" TabIndex="2"/>
         </DockPanel>
         <DockPanel LastChildFill="True">
             <TextBlock Text="" Style="{StaticResource LabelStyle}"/>
-            <CheckBox IsChecked="{Binding Model.AllowReplacing}">Replace old files</CheckBox>
+            <CheckBox IsChecked="{Binding Model.AllowReplacing}" TabIndex="3">Replace old files</CheckBox>
         </DockPanel>
         <DockPanel LastChildFill="False">
-            <Button DockPanel.Dock="Right" Click="ButtonClose_OnClick">Generate</Button>
+            <Button DockPanel.Dock="Right" Click="ButtonClose_OnClick" TabIndex="4">Generate</Button>
         </DockPanel>
     </StackPanel>
 </Window>

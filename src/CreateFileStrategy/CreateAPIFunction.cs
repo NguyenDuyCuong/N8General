@@ -12,20 +12,21 @@ using Microsoft.VisualStudio.Text;
 
 namespace N8General.CreateFileStrategy
 {
-    public class CreateRequestFile : CreateFileBase, ICreateFile
+    public class CreateAPIFunction : CreateFileBase, ICreateFile
     {
-        private readonly string FileExtention = "Request.cs";
-        private readonly string TemplateExtention = ".request";
+        private readonly string FileExtention = "Controller.cs";
+        private readonly string TemplateExtention = ".controller";
 
         public async void DoCreateFile(ConfigueModel config)
         {
-            var file = new FileInfo(Path.Combine(config.SolutionFolder, config.BussinessMessageFolder, config.MethodFolder, config.MethodName + FileExtention));
+            var file = new FileInfo(Path.Combine(config.SolutionFolder, config.APIFolder, config.APIControllerName + FileExtention));
             var dir = file.DirectoryName;
 
             PackageUtilities.EnsureOutputPath(dir);
+            var bussinessProject = ProjectHelpers.GetProject(config.BussinessFolder);
+
             if (!file.Exists)
             {
-                var bussinessProject = ProjectHelpers.GetProject(config.BussinessFolder);
                 int position = await WriteFile(bussinessProject, file.FullName, TemplateExtention);
 
                 try
@@ -53,7 +54,8 @@ namespace N8General.CreateFileStrategy
             }
             else
             {
-
+                var itemController = ProjectHelpers.GetProjectItem(file.Name);
+                // replace
             }
         }
     }

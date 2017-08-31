@@ -1,0 +1,11 @@
+﻿using TNT.BusinessLogic.DataContract;
+using TNT.Common.Base;
+using TNT.Common.Enum;
+
+namespace {namespace}
+{
+    public class {itemname} : ResponseBase<ResponseStatus>
+    {
+        $
+    }
+}

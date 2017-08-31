@@ -1,0 +1,26 @@
+﻿using System.Web.Http;
+using TNT.BusinessLogic.Interfaces;
+using TNT.BusinessLogic.Messages;
+
+
+namespace {namespace}
+{
+	[Authorize]
+    public class {itemname} : ApiController
+    {
+		/// <summary>
+        /// Init the business object 
+        /// </summary>
+        private readonly I{itemname}Business _business;
+
+        /// <summary>
+        /// {itemname}Controller Constructor
+        /// </summary>
+        /// <param name="business"></param>
+        public CompanyController(I{itemname}Business business)
+        {
+            _business = business;			
+			$
+        }
+    }
+}

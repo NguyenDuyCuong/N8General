@@ -1,0 +1,10 @@
+﻿using TNT.DataAccess.DataContract;
+using TNT.Common.Base;
+
+namespace {namespace}
+{
+    public class {itemname} : ParameterBase
+    {
+        $
+    }
+}

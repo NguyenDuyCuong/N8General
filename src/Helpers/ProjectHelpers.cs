@@ -42,20 +42,8 @@ namespace N8General.Helpers
         {
             try
             {
-                var activeSolutionProjects = _dte.Solution. as Array;
-
-                if (activeSolutionProjects != null && activeSolutionProjects.Length > 0)
-                    return activeSolutionProjects.GetValue(0) as Project;
-
-                var doc = _dte.ActiveDocument;
-
-                if (doc != null && !string.IsNullOrEmpty(doc.FullName))
-                {
-                    var item = (_dte.Solution != null) ? _dte.Solution.FindProjectItem(doc.FullName) : null;
-
-                    if (item != null)
-                        return item.ContainingProject;
-                }
+                var projects = GetProjects();
+                return projects?.FirstOrDefault(p => p.Name == projectName);
             }
             catch (Exception ex)
             {
@@ -63,6 +51,82 @@ namespace N8General.Helpers
             }
 
             return null;
+        }
+
+        public static IList<Project> GetProjects()
+        {
+            Projects projects = _dte.Solution.Projects;
+            List<Project> list = new List<Project>();
+            var item = projects.GetEnumerator();
+            while (item.MoveNext())
+            {
+                var project = item.Current as Project;
+                if (project == null)
+                {
+                    continue;
+                }
+
+                if (project.Kind == ProjectKinds.vsProjectKindSolutionFolder)
+                {
+                    list.AddRange(GetSolutionFolderProjects(project));
+                }
+                else
+                {
+                    list.Add(project);
+                }
+            }
+
+            return list;
+        }
+
+        private void GetProjectItem(Project project, string fileName, bool found = false, out ProjectItem projectItem)
+        {
+            if (found)
+                return;
+
+            for (var i = 1; i <= project.ProjectItems.Count; i++)
+            {
+                var subProject = project.ProjectItems.Item(i).SubProject;
+                if (subProject == null)
+                {
+                    continue;
+                }
+
+                // If this is another solution folder, do a recursive call, otherwise add
+                if (subProject.Kind == ProjectKinds.vsProjectKindSolutionFolder)
+                {
+                    
+                }
+                else
+                {
+                    
+                }
+            }
+            return list;
+        }
+
+        private static IEnumerable<Project> GetSolutionFolderProjects(Project solutionFolder)
+        {
+            List<Project> list = new List<Project>();
+            for (var i = 1; i <= solutionFolder.ProjectItems.Count; i++)
+            {
+                var subProject = solutionFolder.ProjectItems.Item(i).SubProject;
+                if (subProject == null)
+                {
+                    continue;
+                }
+
+                // If this is another solution folder, do a recursive call, otherwise add
+                if (subProject.Kind == ProjectKinds.vsProjectKindSolutionFolder)
+                {
+                    list.AddRange(GetSolutionFolderProjects(subProject));
+                }
+                else
+                {
+                    list.Add(subProject);
+                }
+            }
+            return list;
         }
 
         public static string CleanNameSpace(string ns, bool stripPeriods = true)

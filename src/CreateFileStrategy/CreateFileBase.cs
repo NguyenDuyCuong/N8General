@@ -11,10 +11,11 @@ namespace N8General.CreateFileStrategy
 {
     public class CreateFileBase
     {
-        protected async Task<int> WriteFile(Project project, string file)
+        protected async Task<int> WriteFile(Project project, string file, string templateExtension)
         {
+            var fileCode = Path.GetFileNameWithoutExtension(file) + templateExtension;
             string extension = Path.GetExtension(file);
-            string template = await TemplateMap.GetTemplateFilePath(project, file);
+            string template = await TemplateMap.GetTemplateFilePath(project, fileCode);
 
             if (!string.IsNullOrEmpty(template))
             {

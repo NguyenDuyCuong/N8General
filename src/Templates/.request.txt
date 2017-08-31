@@ -1,0 +1,11 @@
+﻿using System;
+using TNT.BusinessLogic.DataContract;
+using TNT.Common.Base;
+
+namespace {namespace}
+{
+    public class {itemname} : RequestBase
+    {
+        $
+    }
+}

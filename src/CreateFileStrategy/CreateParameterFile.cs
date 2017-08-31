@@ -12,10 +12,10 @@ using Microsoft.VisualStudio.Text;
 
 namespace N8General.CreateFileStrategy
 {
-    public class CreateRequestFile : CreateFileBase, ICreateFile
+    public class CreateParameterFile : CreateFileBase, ICreateFile
     {
-        private readonly string FileExtention = "Request.cs";
-        private readonly string TemplateExtention = ".request";
+        private readonly string FileExtention = "Parameter.cs";
+        private readonly string TemplateExtention = ".parameter";
 
         public async void DoCreateFile(ConfigueModel config)
         {

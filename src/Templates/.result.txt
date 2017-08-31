@@ -1,0 +1,11 @@
+﻿using TNT.Common.Base;
+using TNT.Common.Enum;
+using TNT.DataAccess.DataContract;
+
+namespace {namespace}
+{
+    public class {itemname} : ResultBase<ResultStatus>
+    {
+        $
+    }
+}

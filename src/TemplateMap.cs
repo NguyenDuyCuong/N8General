@@ -36,7 +36,7 @@ namespace N8General
             if (_templateFiles.Any(f => Path.GetFileName(f).Equals(name + _defaultExt, StringComparison.OrdinalIgnoreCase)))
             {
                 templateFile = GetTemplate(name);
-            }
+            }            
 
             // Look for file extension matches
             else if (_templateFiles.Any(f => Path.GetFileName(f).Equals(extension + _defaultExt, StringComparison.OrdinalIgnoreCase)))
