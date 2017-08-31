@@ -38,6 +38,33 @@ namespace N8General.Helpers
             return CleanNameSpace(ns, stripPeriods: false);
         }
 
+        public static Project GetProject(string projectName)
+        {
+            try
+            {
+                var activeSolutionProjects = _dte.Solution. as Array;
+
+                if (activeSolutionProjects != null && activeSolutionProjects.Length > 0)
+                    return activeSolutionProjects.GetValue(0) as Project;
+
+                var doc = _dte.ActiveDocument;
+
+                if (doc != null && !string.IsNullOrEmpty(doc.FullName))
+                {
+                    var item = (_dte.Solution != null) ? _dte.Solution.FindProjectItem(doc.FullName) : null;
+
+                    if (item != null)
+                        return item.ContainingProject;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log("Error getting the active project" + ex);
+            }
+
+            return null;
+        }
+
         public static string CleanNameSpace(string ns, bool stripPeriods = true)
         {
             if (stripPeriods)
@@ -50,6 +77,16 @@ namespace N8General.Helpers
                      .Replace("\\", ".");
 
             return ns;
+        }
+
+        public static string GetSolutionRootFolder()
+        {
+            var solution = _dte.Solution;
+
+            if (solution == null)
+                return null;
+            
+            return Path.GetDirectoryName(_dte.Solution.FullName);
         }
 
         public static string GetRootFolder(this Project project)

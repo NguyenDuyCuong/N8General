@@ -7,15 +7,29 @@ using System.Threading.Tasks;
 using EnvDTE;
 using Microsoft.VisualStudio.Shell;
 using N8General.ConfigueForm;
+using N8General.Helpers;
 
 namespace N8General.CreateFileStrategy
 {
     public class CreateRequestFile : CreateFileBase, ICreateFile
     {
-        public void DoCreateFile(ConfigueModel config)
+        private readonly string FileExtention = ".cs";
+
+        public async void DoCreateFile(ConfigueModel config)
         {
-            
-            //var file = new FileInfo(Path.Combine(folder, config.MethodName + ".cs"));
+            var file = new FileInfo(Path.Combine(config.SolutionFolder, config.BussinessMessageFolder, config.MethodFolder, config.MethodName + FileExtention));
+            var dir = file.DirectoryName;
+
+            PackageUtilities.EnsureOutputPath(dir);
+            if (!file.Exists)
+            {
+                var bussinessProject = ProjectHelpers.GetProject("");
+                int position = await WriteFile(bussinessProject, file.FullName);
+            }
+            else
+            {
+
+            }
             //int position = await WriteFile(project, file.FullName);
 
             //ProjectItem projectItem = null;

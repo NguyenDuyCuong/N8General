@@ -23,6 +23,10 @@ namespace N8General.ConfigueForm
 
         #endregion
 
+        #region readonly fields
+        public readonly string BussinessMessageFolder = @"TNT.BusinessLogic\Messages";
+        #endregion
+
         private string _solutionFolder;
 
         public string SolutionFolder
@@ -39,12 +43,29 @@ namespace N8General.ConfigueForm
             set { _apiControllerName = value; OnPropertyChanged("APIControllerName"); }
         }
 
+        private string _methodFolder;
+
+        public string MethodFolder
+        {
+            get { return _methodFolder; }
+            set { _methodFolder = value; OnPropertyChanged("MethodFolder"); }
+        }
+
+
         private string _methodName;
 
         public string MethodName
         {
             get { return _methodName; }
             set { _methodName = value; OnPropertyChanged("MethodName"); }
+        }
+
+        private bool _allowReplacing;
+
+        public bool AllowReplacing
+        {
+            get { return _allowReplacing; }
+            set { _allowReplacing = value; OnPropertyChanged("AllowReplacing"); }
         }
 
     }

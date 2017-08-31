@@ -4,17 +4,17 @@ using System.Resources;
 using System.Runtime.InteropServices;
 using N8General;
 
-[assembly: AssemblyTitle(Vsix.Name)]
-[assembly: AssemblyDescription(Vsix.Description)]
+[assembly: AssemblyTitle("N8General")]
+[assembly: AssemblyDescription("Tool gen code for N8")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany(Vsix.Author)]
-[assembly: AssemblyProduct(Vsix.Name)]
-[assembly: AssemblyCopyright(Vsix.Author)]
+[assembly: AssemblyCompany("Home")]
+[assembly: AssemblyProduct("")]
+[assembly: AssemblyCopyright("CuongND")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(false)]
-[assembly: NeutralResourcesLanguage(Vsix.Language)]
+[assembly: NeutralResourcesLanguage("en")]
 
-[assembly: AssemblyVersion(Vsix.Version)]
-[assembly: AssemblyFileVersion(Vsix.Version)]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
