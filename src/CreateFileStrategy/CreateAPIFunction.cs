@@ -19,19 +19,19 @@ namespace N8General.CreateFileStrategy
 
         public async void DoCreateFile(ConfigueModel config)
         {
-            var file = new FileInfo(Path.Combine(config.SolutionFolder, config.APIFolder, config.APIControllerName + FileExtention));
+            var file = new FileInfo(Path.Combine(config.SolutionFolder, config.APIControllerFolder, config.APIControllerName + FileExtention));
             var dir = file.DirectoryName;
 
             PackageUtilities.EnsureOutputPath(dir);
-            var bussinessProject = ProjectHelpers.GetProject(config.BussinessFolder);
+            var apiProject = ProjectHelpers.GetProject(config.APIFolder);
 
             if (!file.Exists)
             {
-                int position = await WriteFile(bussinessProject, file.FullName, TemplateExtention);
+                int position = await WriteFile(apiProject, file.FullName, TemplateExtention);
 
                 try
                 {
-                    ProjectItem projectItem = bussinessProject.AddFileToProject(file);
+                    ProjectItem projectItem = apiProject.AddFileToProject(file);
 
                     VsShellUtilities.OpenDocument(N8GeneralPackage.Instance, file.FullName);
 
@@ -54,8 +54,27 @@ namespace N8General.CreateFileStrategy
             }
             else
             {
-                var itemController = ProjectHelpers.GetProjectItem(file.Name);
-                // replace
+                var itemController = ProjectHelpers.GetProectItemInProject(apiProject, file.Name);
+                if (itemController != null)
+                {
+                    string relative = PackageUtilities.MakeRelative(apiProject.GetRootFolder(), Path.GetDirectoryName(file.FullName));
+                    var fullNameClass = String.Format("{0}.{1}.{2}", config.APIFolder, relative, Path.GetFileNameWithoutExtension(file.Name)).Replace("..", ".");
+
+                    VsShellUtilities.OpenDocument(N8GeneralPackage.Instance, file.FullName);
+
+                    TextSelection sel = (TextSelection)N8GeneralPackage._dte.ActiveDocument.Selection;
+
+                    var controllerClass = ProjectHelpers.FindClass(apiProject, fullNameClass);
+                    //var codeFunc = controllerClass.AddFunction(config.MethodName, vsCMFunction.vsCMFunctionFunction, vsCMTypeRef.vsCMTypeRefObject, -1, vsCMAccess.vsCMAccessPublic);
+                    //codeFunc.AddAttribute("Authorize", "", -1);
+                    //codeFunc.AddAttribute("HttpPost", "", -1);
+
+                    TextPoint tp = controllerClass.GetEndPoint(vsCMPart.vsCMPartBody);
+                    EditPoint ep = tp.CreateEditPoint();
+                    ep.Insert("return _business.DeletePermissionSetById(request);");
+
+                    tp.CreateEditPoint().SmartFormat(ep);
+                }
             }
         }
     }

@@ -58,20 +58,28 @@ namespace N8General
             if (config == null)
                 return;
 
-            CreateFileContext context = new CreateFileContext(new CreateRequestFile());
-            context.ExecuteCreateFile(config);
 
-            context = new CreateFileContext(new CreateResponseFile());
-            context.ExecuteCreateFile(config);
+            try
+            {
+                CreateFileContext context = new CreateFileContext(new CreateRequestFile());
+                //context.ExecuteCreateFile(config);
 
-            context = new CreateFileContext(new CreateParameterFile());
-            context.ExecuteCreateFile(config);
+                context = new CreateFileContext(new CreateResponseFile());
+                //context.ExecuteCreateFile(config);
 
-            context = new CreateFileContext(new CreateResultFile());
-            context.ExecuteCreateFile(config);
+                context = new CreateFileContext(new CreateParameterFile());
+                //context.ExecuteCreateFile(config);
 
-            context = new CreateFileContext(new CreateAPIFunction());
-            context.ExecuteCreateFile(config);
+                context = new CreateFileContext(new CreateResultFile());
+                //context.ExecuteCreateFile(config);
+
+                context = new CreateFileContext(new CreateAPIFunction());
+                context.ExecuteCreateFile(config);
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(ex.Message);
+            }
         }
         
         

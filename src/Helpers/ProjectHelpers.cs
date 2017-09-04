@@ -79,30 +79,57 @@ namespace N8General.Helpers
             return list;
         }
 
-        private void GetProjectItem(Project project, string fileName, bool found = false, out ProjectItem projectItem)
+        public static ProjectItem GetProectItemInProject(Project proj, string fileName)
         {
-            if (found)
-                return;
+            ProjectItem result = null;
+            foreach (ProjectItem item in proj.ProjectItems)
+            {
+                result = GetProjectItem(item, fileName, null);
+                if (result != null)
+                    break;
+            }
+
+            return result;
+        }
+
+        public static ProjectItem GetProjectItem(ProjectItem project, string fileName, ProjectItem foundItem)
+        {
+            ProjectItem result =  foundItem;
+
+            if (foundItem != null)
+                return result;
+
+            if (project.Name.Contains(fileName))
+            {
+                result = project;
+                return result;
+            }                
 
             for (var i = 1; i <= project.ProjectItems.Count; i++)
             {
-                var subProject = project.ProjectItems.Item(i).SubProject;
-                if (subProject == null)
-                {
-                    continue;
-                }
+                var tmp = project.ProjectItems.Item(i) as ProjectItem;
 
-                // If this is another solution folder, do a recursive call, otherwise add
-                if (subProject.Kind == ProjectKinds.vsProjectKindSolutionFolder)
+                if (tmp != null)
                 {
-                    
-                }
-                else
-                {
-                    
+                    if (tmp.Kind != ProjectKinds.vsProjectKindSolutionFolder)
+                    {
+                        if (tmp.Name.Contains(fileName))
+                        {
+                            return tmp;
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        GetProjectItem(tmp, fileName, result);
+                    }
                 }
             }
-            return list;
+
+            return result;
         }
 
         private static IEnumerable<Project> GetSolutionFolderProjects(Project solutionFolder)
@@ -347,6 +374,40 @@ namespace N8General.Helpers
             }
 
             return selectedObject;
+        }
+
+        public static CodeClass FindClass(Project project, string className)
+        {
+            return FindClass(project.CodeModel.CodeElements, className);
+        }
+
+        public static CodeClass FindClass(CodeElements elements, string className)
+        {
+            foreach (CodeElement element in elements)
+            {
+                if (element is CodeNamespace || element is CodeClass)
+                {
+                    CodeClass c = element as CodeClass;
+                    if (c != null && c.Access == vsCMAccess.vsCMAccessPublic)
+                    {
+                        if (c.FullName == className)
+                            return c;
+
+                        CodeClass subClass = FindClass(c.Members, className);
+                        if (subClass != null)
+                            return subClass;
+                    }
+
+                    CodeNamespace ns = element as CodeNamespace;
+                    if (ns != null)
+                    {
+                        CodeClass cc = FindClass(ns.Members, className);
+                        if (cc != null)
+                            return cc;
+                    }
+                }
+            }
+            return null;
         }
     }
 

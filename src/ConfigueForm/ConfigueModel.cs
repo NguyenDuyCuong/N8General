@@ -27,6 +27,7 @@ namespace N8General.ConfigueForm
         public readonly string BussinessMessageFolder = @"TNT.BusinessLogic\Messages";
         public readonly string BussinessFolder = @"TNT.BusinessLogic";
         public readonly string APIFolder = @"TNT.WebApi";
+        public readonly string APIControllerFolder = @"TNT.WebApi\Controllers";
         #endregion
 
         private string _solutionFolder;
