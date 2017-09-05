@@ -6,60 +6,166 @@
         xmlns:local="clr-namespace:N8General"        
         xmlns:vm="clr-namespace:N8General.ConfigueForm" x:Class="N8General.ConfigueForm.ConfigueDialog"        
         mc:Ignorable="d"
-        Title="Configue" Height="300" Width="500">
+        Title="Configue" Height="500" Width="650">
     <Window.DataContext>
         <vm:ConfigueViewModel/>
     </Window.DataContext>
     <Window.Resources>
         <Style TargetType="TextBlock" x:Key="LabelStyle">
-            <Setter Property="Margin" Value="10 0 0 0"></Setter>
+            <Setter Property="Margin" Value="5 0 3 0"></Setter>
             <Setter Property="Width" Value="90"></Setter>
             <Setter Property="VerticalAlignment" Value="Center"></Setter>
         </Style>
+        <Style TargetType="TextBlock" x:Key="LabelPathStyle">
+            <Setter Property="Margin" Value="5 0 3 0"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
         <Style TargetType="TextBox" x:Key="ValueStyle">
-            <Setter Property="Margin" Value="10 0 0 0"></Setter>
+            <Setter Property="Margin" Value="5 0 3 0"></Setter>
             <Setter Property="Height" Value="24"></Setter>
             <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
         <Style TargetType="TextBox" x:Key="ValueStyleWidth" BasedOn="{StaticResource ValueStyle}">
             <Setter Property="Width" Value="110"></Setter>
         </Style>
-        <Style TargetType="DockPanel">
+        <Style TargetType="DockPanel" x:Key="PanelRow">
             <Setter Property="Height" Value="32"></Setter>
-            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="Margin" Value="0 5 0 3"></Setter>
         </Style>
-        <Style TargetType="Button">
+        <Style TargetType="DockPanel" x:Key="PanelButtonRow">
+            <Setter Property="Height" Value="42"></Setter>
+            <Setter Property="Margin" Value="0 5 0 3"></Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="GenerateButton">
+            <Setter Property="Width" Value="150"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="Button" x:Key="BrowseButton">
             <Setter Property="Padding" Value="10 0 10 0"></Setter>
-            <Setter Property="Margin" Value="10 5 5 5"></Setter>
+            <Setter Property="Margin" Value="5 5 3 5"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
         <Style TargetType="CheckBox">
             <Setter Property="VerticalAlignment" Value="Center"></Setter>
-            <Setter Property="Margin" Value="10 5 5 5"></Setter>
+            <Setter Property="Margin" Value="5 5 3 5"></Setter>
         </Style>
     </Window.Resources>
-    <StackPanel>
-        <DockPanel LastChildFill="True">
+
+    <DockPanel>
+        <DockPanel LastChildFill="True" DockPanel.Dock="Top" Style="{StaticResource PanelRow}" Margin="5 5 5 3">
             <TextBlock Text="Solution Root:" Style="{StaticResource LabelStyle}"/>
             <TextBox Text="{Binding Model.SolutionFolder}" IsReadOnly="True"  Style="{StaticResource ValueStyle}"/>
         </DockPanel>
-        <DockPanel LastChildFill="True">
-            <TextBlock Text="API Controller:" Style="{StaticResource LabelStyle}"/>
-            <Button DockPanel.Dock="Right" Click="ButtonFolderDialog_OnClick">...</Button>
-            <TextBox Text="{Binding Model.APIControllerName}" Style="{StaticResource ValueStyle}" TabIndex="0"/>
-        </DockPanel>
-        <DockPanel LastChildFill="True">
-            <TextBlock Text="Method Name:" Style="{StaticResource LabelStyle}"/>
-            <Button DockPanel.Dock="Right">...</Button>
-            <TextBox Text="{Binding Model.MethodFolder}" Style="{StaticResource ValueStyleWidth}" TabIndex="1"/>
-            <TextBlock Text="/" Style="{StaticResource LabelStyle}" Width="5"/>
-            <TextBox Text="{Binding Model.MethodName}" Style="{StaticResource ValueStyle}" TabIndex="2"/>
-        </DockPanel>
-        <DockPanel LastChildFill="True">
-            <TextBlock Text="" Style="{StaticResource LabelStyle}"/>
-            <CheckBox IsChecked="{Binding Model.AllowReplacing}" TabIndex="3">Replace old files</CheckBox>
-        </DockPanel>
-        <DockPanel LastChildFill="False">
-            <Button DockPanel.Dock="Right" Click="ButtonClose_OnClick" TabIndex="4">Generate</Button>
-        </DockPanel>
-    </StackPanel>
+        <TabControl Margin="5 5 5 3">
+            <TabItem Header="Call service">
+                <DockPanel LastChildFill="True">
+                    <StackPanel DockPanel.Dock="Top">
+                        <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                            <TextBlock Text="Name:" Style="{StaticResource LabelStyle}"/>
+                            <TextBox Text="Company" Style="{StaticResource ValueStyle}" />
+                        </DockPanel>
+                    </StackPanel>
+                    <GroupBox Header="Admin" DockPanel.Dock="Top">
+                        <StackPanel DockPanel.Dock="Top">
+                            <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                <TextBlock Text="Script controller:" Style="{StaticResource LabelStyle}"/>
+                                <TextBlock Text="Scripts\Apps\Company\" Style="{StaticResource LabelPathStyle}"/>
+                                <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButton}">...</Button>
+                                <TextBox Text="company-create-controller" Style="{StaticResource ValueStyle}" />
+                            </DockPanel>
+                            <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                <TextBlock Text="Script service:" Style="{StaticResource LabelStyle}"/>
+                                <TextBlock Text="Scripts\Apps\Company\" Style="{StaticResource LabelPathStyle}"/>
+                                <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButton}">...</Button>
+                                <TextBox Text="company-service" Style="{StaticResource ValueStyle}" />
+                            </DockPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="API" DockPanel.Dock="Top">
+                        <StackPanel DockPanel.Dock="Top">
+                            <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                <TextBlock Text="Action:" Style="{StaticResource LabelStyle}"/>
+                                <TextBlock Text="Controllers.CompanyController" Style="{StaticResource LabelPathStyle}"/>
+                                <TextBox Text="EditDepartment" Style="{StaticResource ValueStyle}" />
+                            </DockPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Bussiness Logic" DockPanel.Dock="Top">
+                        <StackPanel DockPanel.Dock="Top">
+                            <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                <TextBlock Text="Script controller:" Style="{StaticResource LabelStyle}"/>
+                                <TextBlock Text="Scripts\Apps\Company\" Style="{StaticResource LabelPathStyle}"/>
+                                <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButton}">...</Button>
+                                <TextBox Text="company-create-controller" Style="{StaticResource ValueStyle}" />
+                            </DockPanel>
+                            <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                <TextBlock Text="Script service:" Style="{StaticResource LabelStyle}"/>
+                                <TextBlock Text="Scripts\Apps\Company\" Style="{StaticResource LabelPathStyle}"/>
+                                <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButton}">...</Button>
+                                <TextBox Text="company-service" Style="{StaticResource ValueStyle}" />
+                            </DockPanel>
+                        </StackPanel>
+                    </GroupBox>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Model">
+                <DockPanel LastChildFill="True">
+                    <StackPanel DockPanel.Dock="Top">
+                        <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                            <TextBlock Text="Name:" Style="{StaticResource LabelStyle}"/>
+                            <TextBox Text="Company" Style="{StaticResource ValueStyle}" />
+                        </DockPanel>
+                    </StackPanel>
+                    <GroupBox Header="BusinessLogic" DockPanel.Dock="Top">
+                        <StackPanel DockPanel.Dock="Top">
+                            <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                <TextBlock Text="Contract:" Style="{StaticResource LabelStyle}"/>
+                                <TextBlock Text="DataContract\" Style="{StaticResource LabelPathStyle}"/>
+                                <TextBox Text="CompanyDto" Style="{StaticResource ValueStyle}" />
+                            </DockPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="DataAccess" DockPanel.Dock="Top">
+                        <StackPanel DockPanel.Dock="Top">
+                            <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                <TextBlock Text="Contract:" Style="{StaticResource LabelStyle}"/>
+                                <TextBlock Text="DataContract\" Style="{StaticResource LabelPathStyle}"/>
+                                <TextBox Text="CompanyObject" Style="{StaticResource ValueStyle}" />
+                            </DockPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    <DockPanel DockPanel.Dock="Top" LastChildFill="False" Style="{StaticResource PanelButtonRow}">
+                        <Button DockPanel.Dock="Right" Click="ButtonClose_OnClick" Style="{StaticResource GenerateButton}">Generate</Button>
+                    </DockPanel>
+                    <StackPanel></StackPanel>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Old">
+                <StackPanel>                    
+                    <DockPanel LastChildFill="True">
+                        <TextBlock Text="API Controller:" Style="{StaticResource LabelStyle}"/>
+                        <Button DockPanel.Dock="Right" Click="ButtonFolderDialog_OnClick">...</Button>
+                        <TextBox Text="{Binding Model.APIControllerName}" Style="{StaticResource ValueStyle}" TabIndex="0"/>
+                    </DockPanel>
+                    <DockPanel LastChildFill="True">
+                        <TextBlock Text="Method Name:" Style="{StaticResource LabelStyle}"/>
+                        <Button DockPanel.Dock="Right">...</Button>
+                        <TextBox Text="{Binding Model.MethodFolder}" Style="{StaticResource ValueStyleWidth}" TabIndex="1"/>
+                        <TextBlock Text="/" Style="{StaticResource LabelStyle}" Width="5"/>
+                        <TextBox Text="{Binding Model.MethodName}" Style="{StaticResource ValueStyle}" TabIndex="2"/>
+                    </DockPanel>
+                    <DockPanel LastChildFill="True">
+                        <TextBlock Text="" Style="{StaticResource LabelStyle}"/>
+                        <CheckBox IsChecked="{Binding Model.AllowReplacing}" TabIndex="3">Replace old files</CheckBox>
+                    </DockPanel>
+                    <DockPanel LastChildFill="False">
+                        <Button DockPanel.Dock="Right" Click="ButtonClose_OnClick" TabIndex="4" Style="{StaticResource GenerateButton}">Generate</Button>
+                    </DockPanel>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </DockPanel>    
+    
 </Window>
