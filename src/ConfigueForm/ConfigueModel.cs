@@ -87,6 +87,137 @@ namespace N8General.ConfigueForm
             get { return _adminScriptService; }
             set { _adminScriptService = value; }
         }
+
+        private string _apiActionRelation;
+
+        public string ApiActionRelation
+        {
+            get { return _apiActionRelation; }
+            set { _apiActionRelation = value; }
+        }
+
+        private string _apiAction;
+
+        public string ApiAction
+        {
+            get { return _apiAction; }
+            set { _apiAction = value; }
+        }
+
+        private string _blMessageRequestRelation;
+
+        public string BLMessageRequestRelation
+        {
+            get { return _blMessageRequestRelation; }
+            set { _blMessageRequestRelation = value; }
+        }
+
+        private string _blMessagesrequest;
+
+        public string BLMessageRequest
+        {
+            get { return _blMessagesrequest; }
+            set { _blMessagesrequest = value; }
+        }
+
+        private string _blMessageResponseRelation;
+
+        public string BLMessageResponseRelation
+        {
+            get { return _blMessageResponseRelation; }
+            set { _blMessageResponseRelation = value; }
+        }
+
+        private string _blMessagesResponse;
+
+        public string BLMessageResponse
+        {
+            get { return _blMessagesResponse; }
+            set { _blMessagesResponse = value; }
+        }
+
+        private string _blMapperConfiguration;
+
+        public string BLMapperConfiguration
+        {
+            get { return _blMapperConfiguration; }
+            set { _blMapperConfiguration = value; }
+        }
+
+        private string _blMappingExtension;
+
+        public string BLMappingExtension
+        {
+            get { return _blMappingExtension; }
+            set { _blMappingExtension = value; }
+        }
+
+        private string _interfaceCompanyBusiness;
+
+        public string InterfacesCompanyBusiness
+        {
+            get { return _interfaceCompanyBusiness; }
+            set { _interfaceCompanyBusiness = value; }
+        }
+
+        private string _implementsCompanyBL;
+
+        public string ImplementsCompanyBL
+        {
+            get { return _implementsCompanyBL; }
+            set { _implementsCompanyBL = value; }
+        }
+
+        private string _daMessagesParameter;
+
+        public string DAMessageParameter
+        {
+            get { return _daMessagesParameter; }
+            set { _daMessagesParameter = value; }
+        }
+
+        private string _daMessagesResult;
+
+        public string DAMessageResult
+        {
+            get { return _daMessagesResult; }
+            set { _daMessagesResult = value; }
+        }
+
+
+        private string _daMapperConfiguration;
+
+        public string DAMapperConfiguration
+        {
+            get { return _daMapperConfiguration; }
+            set { _daMapperConfiguration = value; }
+        }
+
+
+        private string _daMappingExtension;
+
+        public string DAMappingExtension
+        {
+            get { return _daMappingExtension; }
+            set { _daMappingExtension = value; }
+        }
+
+        private string _interfacesCompanyDA;
+
+        public string InterfacesCompanyDA
+        {
+            get { return _interfacesCompanyDA; }
+            set { _interfacesCompanyDA = value; }
+        }
+
+        private string _implementsCompanyDA;
+
+        public string ImplementsCompanyDA
+        {
+            get { return _implementsCompanyDA; }
+            set { _implementsCompanyDA = value; }
+        }
+
         #endregion
 
 
