@@ -38,6 +38,60 @@ namespace N8General.ConfigueForm
             set { _solutionFolder = value; OnPropertyChanged("SolutionFolder"); }
         }
 
+        #region Call Service
+        private string _controllerName;
+
+        public string ControllerName
+        {
+            get { return _controllerName; }
+            set { _controllerName = value; }
+        }
+
+        private string _controllerNameAlternative;
+
+        public string ControllerNameAlternative
+        {
+            get { return _controllerNameAlternative; }
+            set { _controllerNameAlternative = value; }
+        }
+
+        private string _adminScriptControllerRelaytive;
+
+        public string AdminScriptControllerRelaytive
+        {
+            get { return _adminScriptControllerRelaytive; }
+            set { _adminScriptControllerRelaytive = value; }
+        }
+
+        private string _adminScriptController;
+
+        public string AdminScriptController
+        {
+            get { return _adminScriptController; }
+            set { _adminScriptController = value; }
+        }
+
+
+        private string _adminScriptServiceRelaytive;
+
+        public string AdminScriptServiceRelaytive
+        {
+            get { return _adminScriptServiceRelaytive; }
+            set { _adminScriptServiceRelaytive = value; }
+        }
+
+        private string _adminScriptService;
+
+        public string AdminScriptService
+        {
+            get { return _adminScriptService; }
+            set { _adminScriptService = value; }
+        }
+        #endregion
+
+
+
+
         private string _apiControllerName;
 
         public string APIControllerName

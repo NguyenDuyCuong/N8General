@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:N8General"        
         xmlns:vm="clr-namespace:N8General.ConfigueForm" x:Class="N8General.ConfigueForm.ConfigueDialog"        
         mc:Ignorable="d"
-        Title="Configue" Height="500" Width="650">
+        Title="Configue" Width="650">
     <Window.DataContext>
         <vm:ConfigueViewModel/>
     </Window.DataContext>
@@ -60,86 +60,156 @@
         </DockPanel>
         <TabControl Margin="5 5 5 3">
             <TabItem Header="Call service">
-                <DockPanel LastChildFill="True">
-                    <StackPanel DockPanel.Dock="Top">
-                        <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
-                            <TextBlock Text="Name:" Style="{StaticResource LabelStyle}"/>
-                            <TextBox Text="Company" Style="{StaticResource ValueStyle}" />
-                        </DockPanel>
-                    </StackPanel>
-                    <GroupBox Header="Admin" DockPanel.Dock="Top">
-                        <StackPanel DockPanel.Dock="Top">
-                            <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
-                                <TextBlock Text="Script controller:" Style="{StaticResource LabelStyle}"/>
-                                <TextBlock Text="Scripts\Apps\Company\" Style="{StaticResource LabelPathStyle}"/>
-                                <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButton}">...</Button>
-                                <TextBox Text="company-create-controller" Style="{StaticResource ValueStyle}" />
-                            </DockPanel>
-                            <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
-                                <TextBlock Text="Script service:" Style="{StaticResource LabelStyle}"/>
-                                <TextBlock Text="Scripts\Apps\Company\" Style="{StaticResource LabelPathStyle}"/>
-                                <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButton}">...</Button>
-                                <TextBox Text="company-service" Style="{StaticResource ValueStyle}" />
-                            </DockPanel>
+                <DockPanel>
+                    <DockPanel DockPanel.Dock="Bottom" LastChildFill="False" Style="{StaticResource PanelButtonRow}">
+                        <Button DockPanel.Dock="Right" Click="ButtonClose_OnClick" Style="{StaticResource GenerateButton}">Generate</Button>
+                    </DockPanel>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel>
+                            <StackPanel DockPanel.Dock="Top">
+                                <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                    <TextBlock Text="Name:" Style="{StaticResource LabelStyle}"/>
+                                    <TextBox Text="Company" Style="{StaticResource ValueStyle}" />
+                                </DockPanel>
+                                <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                    <TextBlock Text="Alternative:" Style="{StaticResource LabelStyle}"/>
+                                    <TextBox Text="Companies" Style="{StaticResource ValueStyle}" />
+                                </DockPanel>
+                            </StackPanel>
+                            <GroupBox Header="Admin" DockPanel.Dock="Top">
+                                <StackPanel DockPanel.Dock="Top">
+                                    <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                        <TextBlock Text="Script controller:" Style="{StaticResource LabelStyle}"/>
+                                        <TextBlock Text="Scripts\Apps\Company\" Style="{StaticResource LabelPathStyle}"/>
+                                        <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButton}">...</Button>
+                                        <TextBox Text="company-create-controller" Style="{StaticResource ValueStyle}" />
+                                    </DockPanel>
+                                    <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                        <TextBlock Text="Script service:" Style="{StaticResource LabelStyle}"/>
+                                        <TextBlock Text="Scripts\Apps\Company\" Style="{StaticResource LabelPathStyle}"/>
+                                        <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButton}">...</Button>
+                                        <TextBox Text="company-service" Style="{StaticResource ValueStyle}" />
+                                    </DockPanel>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="API" DockPanel.Dock="Top">
+                                <StackPanel DockPanel.Dock="Top">
+                                    <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                        <TextBlock Text="Action:" Style="{StaticResource LabelStyle}"/>
+                                        <TextBlock Text="Controllers.CompanyController" Style="{StaticResource LabelPathStyle}"/>
+                                        <TextBox Text="EditDepartment" Style="{StaticResource ValueStyle}" />
+                                    </DockPanel>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="BussinessLogic" DockPanel.Dock="Top">
+                                <StackPanel DockPanel.Dock="Top">
+                                    <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                        <TextBlock Text="Messages:" Style="{StaticResource LabelStyle}"/>
+                                        <TextBlock Text="Messages\Companies\" Style="{StaticResource LabelPathStyle}"/>
+                                        <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButton}">...</Button>
+                                        <TextBox Text="EditDepartmentRequest" Style="{StaticResource ValueStyle}" />
+                                    </DockPanel>
+                                    <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                        <TextBlock Text="" Style="{StaticResource LabelStyle}"/>
+                                        <TextBlock Text="Messages\Companies\" Style="{StaticResource LabelPathStyle}"/>
+                                        <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButton}">...</Button>
+                                        <TextBox Text="EditDepartmentResponse" Style="{StaticResource ValueStyle}" />
+                                    </DockPanel>
+                                    <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                        <TextBlock Text="Mapper:" Style="{StaticResource LabelStyle}"/>
+                                        <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButton}">...</Button>
+                                        <TextBlock Text="Mapper.BusinessLogicMapperConfiguration" Style="{StaticResource LabelPathStyle}"/>
+                                    </DockPanel>
+                                    <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                        <TextBlock Text="" Style="{StaticResource LabelStyle}"/>
+                                        <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButton}">...</Button>
+                                        <TextBlock Text="Mapper.BusinessLogicMappingExtension" Style="{StaticResource LabelPathStyle}"/>
+                                    </DockPanel>
+                                    <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                        <TextBlock Text="Interfaces:" Style="{StaticResource LabelStyle}"/>
+                                        <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButton}">...</Button>
+                                        <TextBlock Text="Interfaces.ICompanyBusiness" Style="{StaticResource LabelPathStyle}"/>
+                                    </DockPanel>
+                                    <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                        <TextBlock Text="Implements:" Style="{StaticResource LabelStyle}"/>
+                                        <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButton}">...</Button>
+                                        <TextBlock Text="Implements.CompanyBusinessLogic" Style="{StaticResource LabelPathStyle}"/>
+                                    </DockPanel>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="DataAccess" DockPanel.Dock="Top">
+                                <StackPanel DockPanel.Dock="Top">
+                                    <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                        <TextBlock Text="Messages:" Style="{StaticResource LabelStyle}"/>
+                                        <TextBlock Text="Messages\Companies\" Style="{StaticResource LabelPathStyle}"/>
+                                        <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButton}">...</Button>
+                                        <TextBox Text="EditDepartmentParameter" Style="{StaticResource ValueStyle}" />
+                                    </DockPanel>
+                                    <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                        <TextBlock Text="" Style="{StaticResource LabelStyle}"/>
+                                        <TextBlock Text="Messages\Companies\" Style="{StaticResource LabelPathStyle}"/>
+                                        <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButton}">...</Button>
+                                        <TextBox Text="EditDepartmentResult" Style="{StaticResource ValueStyle}" />
+                                    </DockPanel>
+                                    <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                        <TextBlock Text="Mapper:" Style="{StaticResource LabelStyle}"/>
+                                        <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButton}">...</Button>
+                                        <TextBlock Text="Mapper.DataAccessMapperConfiguration" Style="{StaticResource LabelPathStyle}"/>
+                                    </DockPanel>
+                                    <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                        <TextBlock Text="" Style="{StaticResource LabelStyle}"/>
+                                        <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButton}">...</Button>
+                                        <TextBlock Text="Mapper.DataAccessMappingExtension" Style="{StaticResource LabelPathStyle}"/>
+                                    </DockPanel>
+                                    <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                        <TextBlock Text="Interfaces:" Style="{StaticResource LabelStyle}"/>
+                                        <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButton}">...</Button>
+                                        <TextBlock Text="Interfaces.ICompanyDataAccess" Style="{StaticResource LabelPathStyle}"/>
+                                    </DockPanel>
+                                    <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                        <TextBlock Text="Implements:" Style="{StaticResource LabelStyle}"/>
+                                        <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButton}">...</Button>
+                                        <TextBlock Text="Implements.CompanyDataAccess" Style="{StaticResource LabelPathStyle}"/>
+                                    </DockPanel>
+                                </StackPanel>
+                            </GroupBox>
                         </StackPanel>
-                    </GroupBox>
-                    <GroupBox Header="API" DockPanel.Dock="Top">
-                        <StackPanel DockPanel.Dock="Top">
-                            <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
-                                <TextBlock Text="Action:" Style="{StaticResource LabelStyle}"/>
-                                <TextBlock Text="Controllers.CompanyController" Style="{StaticResource LabelPathStyle}"/>
-                                <TextBox Text="EditDepartment" Style="{StaticResource ValueStyle}" />
-                            </DockPanel>
-                        </StackPanel>
-                    </GroupBox>
-                    <GroupBox Header="Bussiness Logic" DockPanel.Dock="Top">
-                        <StackPanel DockPanel.Dock="Top">
-                            <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
-                                <TextBlock Text="Script controller:" Style="{StaticResource LabelStyle}"/>
-                                <TextBlock Text="Scripts\Apps\Company\" Style="{StaticResource LabelPathStyle}"/>
-                                <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButton}">...</Button>
-                                <TextBox Text="company-create-controller" Style="{StaticResource ValueStyle}" />
-                            </DockPanel>
-                            <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
-                                <TextBlock Text="Script service:" Style="{StaticResource LabelStyle}"/>
-                                <TextBlock Text="Scripts\Apps\Company\" Style="{StaticResource LabelPathStyle}"/>
-                                <Button DockPanel.Dock="Right" Style="{StaticResource BrowseButton}">...</Button>
-                                <TextBox Text="company-service" Style="{StaticResource ValueStyle}" />
-                            </DockPanel>
-                        </StackPanel>
-                    </GroupBox>
+                    </ScrollViewer>
                 </DockPanel>
             </TabItem>
             <TabItem Header="Model">
-                <DockPanel LastChildFill="True">
-                    <StackPanel DockPanel.Dock="Top">
-                        <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
-                            <TextBlock Text="Name:" Style="{StaticResource LabelStyle}"/>
-                            <TextBox Text="Company" Style="{StaticResource ValueStyle}" />
-                        </DockPanel>
-                    </StackPanel>
-                    <GroupBox Header="BusinessLogic" DockPanel.Dock="Top">
-                        <StackPanel DockPanel.Dock="Top">
-                            <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
-                                <TextBlock Text="Contract:" Style="{StaticResource LabelStyle}"/>
-                                <TextBlock Text="DataContract\" Style="{StaticResource LabelPathStyle}"/>
-                                <TextBox Text="CompanyDto" Style="{StaticResource ValueStyle}" />
-                            </DockPanel>
-                        </StackPanel>
-                    </GroupBox>
-                    <GroupBox Header="DataAccess" DockPanel.Dock="Top">
-                        <StackPanel DockPanel.Dock="Top">
-                            <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
-                                <TextBlock Text="Contract:" Style="{StaticResource LabelStyle}"/>
-                                <TextBlock Text="DataContract\" Style="{StaticResource LabelPathStyle}"/>
-                                <TextBox Text="CompanyObject" Style="{StaticResource ValueStyle}" />
-                            </DockPanel>
-                        </StackPanel>
-                    </GroupBox>
-                    <DockPanel DockPanel.Dock="Top" LastChildFill="False" Style="{StaticResource PanelButtonRow}">
+                <DockPanel LastChildFill="True">                   
+                    <DockPanel DockPanel.Dock="Bottom" LastChildFill="False" Style="{StaticResource PanelButtonRow}">
                         <Button DockPanel.Dock="Right" Click="ButtonClose_OnClick" Style="{StaticResource GenerateButton}">Generate</Button>
                     </DockPanel>
-                    <StackPanel></StackPanel>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel>
+                            <StackPanel>
+                                <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                    <TextBlock Text="Name:" Style="{StaticResource LabelStyle}"/>
+                                    <TextBox Text="Company" Style="{StaticResource ValueStyle}" />
+                                </DockPanel>
+                            </StackPanel>
+                            <GroupBox Header="BusinessLogic">
+                                <StackPanel DockPanel.Dock="Top">
+                                    <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                        <TextBlock Text="Contract:" Style="{StaticResource LabelStyle}"/>
+                                        <TextBlock Text="DataContract\" Style="{StaticResource LabelPathStyle}"/>
+                                        <TextBox Text="CompanyDto" Style="{StaticResource ValueStyle}" />
+                                    </DockPanel>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="DataAccess">
+                                <StackPanel DockPanel.Dock="Top">
+                                    <DockPanel LastChildFill="True" Style="{StaticResource PanelRow}">
+                                        <TextBlock Text="Contract:" Style="{StaticResource LabelStyle}"/>
+                                        <TextBlock Text="DataContract\" Style="{StaticResource LabelPathStyle}"/>
+                                        <TextBox Text="CompanyObject" Style="{StaticResource ValueStyle}" />
+                                    </DockPanel>
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
+                    </ScrollViewer>                    
                 </DockPanel>
             </TabItem>
             <TabItem Header="Old">
