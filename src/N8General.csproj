@@ -214,6 +214,29 @@
     </Compile>
     <Compile Include="ConfigueForm\ConfigueModel.cs" />
     <Compile Include="ConfigueForm\ConfigueViewModel.cs" />
+    <Compile Include="CreateFileBase\FileBase.cs" />
+    <Compile Include="CreateFileBase\IFileCode.cs" />
+    <Compile Include="CreateFileBase\TemplateC.cs" />
+    <Compile Include="CreateFileBuilder\BuildGenerateCallService.cs" />
+    <Compile Include="CreateFileBuilder\CreateFileCode.cs" />
+    <Compile Include="CreateFileBase\IFileTemplate.cs" />
+    <Compile Include="CreateFileBuilder\FCAdminScriptController.cs" />
+    <Compile Include="CreateFileBuilder\FCAdminScriptService.cs" />
+    <Compile Include="CreateFileBuilder\FCAPIController.cs" />
+    <Compile Include="CreateFileBuilder\FCBLMapperConfiguration.cs" />
+    <Compile Include="CreateFileBuilder\FCBLMappingExtension.cs" />
+    <Compile Include="CreateFileBuilder\FCBLMessageRequest.cs" />
+    <Compile Include="CreateFileBuilder\FCBLMessageResponse.cs" />
+    <Compile Include="CreateFileBuilder\FCDLMapperConfiguration.cs" />
+    <Compile Include="CreateFileBuilder\FCDLMappingExtension.cs" />
+    <Compile Include="CreateFileBuilder\FCDLMessageParameter.cs" />
+    <Compile Include="CreateFileBuilder\FCDLMessageResult.cs" />
+    <Compile Include="CreateFileBuilder\FCImplementsBusiness.cs" />
+    <Compile Include="CreateFileBuilder\FCImplementsDataAccess.cs" />
+    <Compile Include="CreateFileBuilder\FCInterfacesBusiness.cs" />
+    <Compile Include="CreateFileBuilder\FCInterfacesDataAccess.cs" />
+    <Compile Include="CreateFileBuilder\N8Generate.cs" />
+    <Compile Include="CreateFileBuilder\UpdateFileCode.cs" />
     <Compile Include="CreateFileStrategy\CreateFileBase.cs" />
     <Compile Include="CreateFileStrategy\CreateFileContext.cs" />
     <Compile Include="CreateFileStrategy\CreateAPIFunction.cs" />
@@ -315,7 +338,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="CreateFileFactories\" />
+  </ItemGroup>
   <PropertyGroup>
     <UseCodebase>true</UseCodebase>
   </PropertyGroup>
