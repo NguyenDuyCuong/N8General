@@ -15,6 +15,7 @@ using Microsoft.VisualStudio.Text;
 using N8General.ConfigueForm;
 using N8General.CreateFileStrategy;
 using N8General.Helpers;
+using System.Windows.Forms;
 
 namespace N8General
 {
@@ -85,8 +86,7 @@ namespace N8General
         
         private ConfigueModel PromptForConfigue(string folder)
         {
-            DirectoryInfo dir = new DirectoryInfo(folder);
-            //var dialog = new FileNameDialog(dir.Name);
+            ConfigueModel result = null;
             var dialog = new ConfigueDialog();
             var vm = dialog.DataContext as ConfigueViewModel;
 
@@ -98,9 +98,14 @@ namespace N8General
                 dialog.Owner = window;
             }
 
-            vm?.InitDialog(dir.FullName);
-            var result = dialog.ShowDialog();
-            return vm?.Model;
+            vm?.InitDialog(folder);
+            
+            if (dialog.ShowDialog().GetValueOrDefault())
+            {
+                result = vm?.Model;
+            }
+
+            return result;
         }
 
         private static string FindFolder(object item)
